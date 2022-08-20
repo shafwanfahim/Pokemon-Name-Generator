@@ -1,2 +1,74 @@
 # Pokemon-Name-Generator
 Name (Pokemon) generator utilizing API's and various other front-end concepts 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-image: url("poke.jpg");  
+        background-size:cover;
+        
+    }
+    #x{
+        color: red; 
+        text-transform: uppercase; 
+        font-family: 'Courier New', Courier, monospace; 
+        display: block; 
+        width: 200px; 
+        height: 175px;  
+        margin: 50px auto; 
+        background-color: beige;         text-align:center ; 
+        padding: 10px; 
+        opacity: 0.8;
+        text-align: center;
+    } 
+
+    .getRandomPokemon {
+  background-color: beige
+  border: none;
+  color: red;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px; 
+  
+}  
+
+ 
+</style>
+
+<body>
+   <h1 id="x">Your pokemon will appear here</h1> 
+   <button class="getRandomPokemon">Click here for your Pokemon</button>
+   <script>
+    
+
+const button = document.querySelector(".getRandomPokemon");
+button.addEventListener('click', (e) => {
+    e.preventDefault() 
+    var index = Math.round((Math.random(1,100) * 10) * (Math.random(1,100)*10))   
+    var string = "https://pokeapi.co/api/v2/pokemon/" 
+    var edit = string.concat(index); 
+    console.log(index) 
+    console.log(edit) 
+    fetch(edit) 
+    .then(response => response.json()) 
+    .then(pokemon => {
+        console.log(pokemon.name) 
+        document.getElementById("x").innerHTML = pokemon.name 
+    
+}) 
+} )  
+
+
+
+    </script> 
+  
+</body>
+</html>
